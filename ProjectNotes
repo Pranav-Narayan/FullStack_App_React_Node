@@ -1,0 +1,12 @@
+Authentication 
+----------------
+
+JWT(json web token):
+    Login -> credential Verify -> Generate Token -> Send to Client(brower) -> store inside cookie
+    each request will contain this token from cookies -> with token browser will verify that user is authenticated
+    
+Session Authentication:
+    Login Request -> Server -> server verify and validate credentials -> if credentials are valid user Login completed 
+    + create a sessionid and stores in database-> send sessionid to client -> store sessionid inside cookie 
+    
+    when ever Request goes to server -> session id will added along with url 
