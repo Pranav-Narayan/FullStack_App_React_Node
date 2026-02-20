@@ -18,6 +18,12 @@ app.get('/api/user', (req, res) => {
     res.send(user)
 })
 
+app.post('/api/register', (req, res) => {
+    res.send({
+        message: "Account Creation Completed"
+    })
+})
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`)
 })
