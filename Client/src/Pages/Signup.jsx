@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-
+import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
-
+  const navigate = useNavigate()
   const [user, SetUser] = useState({ Name: "", Email: "", Password: "" })
   const [message,setMessage] = useState("")
 
@@ -22,6 +22,7 @@ const Signup = () => {
         const res = await axios.post('/api/register',user)
         console.log("Account Creation Completed")
         alert(res.data.message)
+        navigate('/login')
       }
     } catch (error) {
       console.log("Error in Account Creation",error.message)
