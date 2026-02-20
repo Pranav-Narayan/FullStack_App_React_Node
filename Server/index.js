@@ -30,13 +30,7 @@ const User = mongoose.model("User", userSchema)
 app.use(cors(corsOptions))
 app.use(express.json())
 
-
 // routes 
-app.get('/api/user',(req, res) => {
-        const user = { id: 1155, name: "Tom", Phone: 7775552221 }
-        res.send(user)
-    })
-
 // Route : Create account
 app.post('/api/register', async(req, res) => {
     const { Name, Email, Password } = req.body
@@ -64,6 +58,33 @@ app.post('/api/register', async(req, res) => {
     }
     
 })
+
+// Route Login 
+
+app.post('/api/login', async (req, res) => {
+    try {
+        const { Email, Password } = req.body
+        if (Email == "" || Password == "") {
+            return res.status(400).json({error:"Email and Password are required"})
+        }
+        else {
+            const existingUser = await User.findOne({ Email })
+            if (!existingUser) {
+                return res.status(401).json({error:"User not found"})
+            }
+            const isPasswordValid = await bcrypt.compare(Password, existingUser.Passwrod)
+            if (!isPasswordValid) {
+                return res.status(401).json({error:"Invalid password"})
+            }
+             
+
+        }
+        
+    } catch (error) {
+        return res.status(500).json({error:"Internal server error"})
+    }
+})
+
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`)

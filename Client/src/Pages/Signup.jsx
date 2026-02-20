@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
   const navigate = useNavigate()
-  const [user, SetUser] = useState({ Name: "", Email: "", Password: "" })
+  const [user, setUser] = useState({ Name: "", Email: "", Password: "" })
   const [message,setMessage] = useState("")
 
   const onHandleChange = (e) => {
-    SetUser({ ...user, [e.target.name]: e.target.value })
+    setUser({ ...user, [e.target.name]: e.target.value })
   }
 
   const onHandleSubmit = async (e) => {
