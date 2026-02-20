@@ -13,10 +13,11 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
-app.get('/api/user', (req, res) => {
-    const user = { id: 1155, name: "Tom", Phone: 7775552221 }
-    res.send(user)
-})
+app.get('/api/user',
+    (req, res) => {
+        const user = { id: 1155, name: "Tom", Phone: 7775552221 }
+        res.send(user)
+    })
 
 app.post('/api/register', (req, res) => {
     res.send({
